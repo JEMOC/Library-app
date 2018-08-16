@@ -1,0 +1,141 @@
+@font-face {
+  font-family: 'iconfont';
+  src: url('../../icon/iconfont.eot');
+  src: url('../../icon/iconfont.eot?#iefix') format('embedded-opentype'),
+  url('../../icon/iconfont.woff') format('woff'),
+  url('../../icon/iconfont.ttf') format('truetype'),
+  url('../../icon/iconfont.svg#iconfont') format('svg');
+}
+.iconfont{
+  font-family: 'iconfont' !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke: 0.2px;
+  -moz-osx-font-smoothing: grayscale;  
+  display: block;
+}
+
+h1,
+p {
+  margin: 0;
+  padding: 0.2em;
+  font-size: 14px;
+}
+
+@media only screen and (min-device-width: 0) {
+  .box {
+    height: 200px;
+    margin: .3em .5em;
+    overflow: hidden;
+    transition: all .1s linear;
+    border: 1px solid #eee;
+    &:hover {
+      box-shadow: 1px 3px 2px rgba(0, 0, 0, .1);
+      cursor: pointer;
+    }
+    .book_cover {
+      height: 100%;
+      float: left;
+    }
+    .book_profile {
+      height: 100%;
+      padding: 0 10px;
+      overflow: hidden;
+      .book_title {
+        font-size: 16px;
+      }
+      .book_author,
+      .book_public,
+      .book_translator,
+      .book_detail {
+        .tag {
+          color: #666;
+          margin-right: 15px;
+        }
+        .tag_text {
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+    }
+  }
+  .ctl_box {
+    margin: 20px 0;
+
+    .ctl_list{
+      margin: 0;
+      padding: 0;
+      text-align: center;
+
+      li{
+        display: inline-block;
+        line-height: 30px;
+        width: 30px;
+        text-align: center;
+        cursor: pointer;
+      }
+
+      .index_item{
+        border: 1px solid #eee;
+        margin: 0 3px;
+      }
+
+      .selected{
+        background-color: #eee;
+      }
+
+      .prev, .next{
+        width: 50px;
+        font-size: 12px;
+        vertical-align: top;
+      }
+    }
+    
+  }
+}
+
+@media only screen and (max-device-width: 768px) {
+  .container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .box {
+    width: 95%;
+    .book_profile {
+      padding-right: 0;
+    }
+    .book_title {
+      text-align: center;
+    }
+    .tag_text {}
+    .book_translator {
+      display: none;
+    }
+    .public_date{
+      display: none;
+    }
+  }
+}
+
+@media only screen and (min-device-width: 769px) and (max-device-width: 1364px) {
+  .box {
+    width: 45%;
+    float: left;
+    margin: 0 5px;
+  }
+}
+
+@media only screen and (min-device-width: 1365px) {
+  .container {
+    min-width: 920px;
+  }
+  .box {
+    width: 48%;
+    float: left;
+    .book_title {
+      padding-bottom: 15px;
+    }
+  }
+}

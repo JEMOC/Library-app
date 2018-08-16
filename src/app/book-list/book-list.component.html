@@ -1,0 +1,39 @@
+<div class="container clearfix">
+  <div class="box" *ngFor="let data of list">
+    <img src="{{des_url}}{{data.title}}.jpg" alt="" class="book_cover">
+    <div class="book_profile">
+      <h1 class="book_title">{{data.title}}</h1>
+      <p class="book_author">
+        <span class="tag">作者</span>
+        <span class="tag_text">{{data.public.author}}</span>
+      </p>
+      <p class="book_public">
+        <span class="tag">出版社</span>
+        <span class="tag_text">{{data.public.conpany}}<a class="public_date">/{{data.public.date}}</a></span>
+      </p>
+      <p class="book_translator">
+        <span class="tag">翻译者</span>
+        <span class="tag_text">{{data.public.translator}}</span>
+      </p>
+      <p class="book_detail">
+        <span class="tag">摘要</span>
+        <span class="tag_text">{{data.synopsis}}</span>
+      </p>
+    </div>
+  </div>
+
+
+
+</div>
+
+<div class="ctl_box" *ngIf="list">
+
+  <ul class="ctl_list clearfix">
+    <li class="prev" (click)="changeIndex($event)">上一页</li>
+    <li (click) = "this.changePageArr(-1)"><span class="iconfont">&#xe7ea;</span></li>
+    <li class="index_item" *ngFor="let i of arr" (click)="changeIndex($event)" [class.selected]="i === this.index">{{i}}</li>
+    <li (click) = "this.changePageArr(1)"><span class="iconfont">&#xe7eb;</span></li>
+    <li class="next" (click)="changeIndex($event)">下一页</li>
+  </ul>
+
+</div>

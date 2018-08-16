@@ -1,0 +1,18 @@
+<div class="main-wrapper">
+  <div class="main">
+    <div class="form">
+      <div class="input-nickname">
+        <input type="text" [(ngModel)]="query.username" class="nickname" autocomplete="off" placeholder="昵称">
+      </div>
+      <div class="input-password">
+        <input type="password" [(ngModel)]="query.password" autocomplete="off" placeholder="密码">
+      </div>
+      <div class="input-email">
+        <input type="email" [(ngModel)]="query.email" autocomplete="off" placeholder="电子邮箱">
+      </div>
+      <div class="input-sumbit">
+        <a (click)="register()">登录</a>
+      </div>
+    </div>
+  </div>
+</div>

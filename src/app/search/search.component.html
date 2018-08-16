@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="search-ui">
+    <div class="search-main">
+      <input class="search-text" type="text" [(ngModel)]="title" (ngModelChange)="this.getData()">
+      <a class="search-img"></a>
+    </div>
+
+    <div class="search-result">
+      <ul class="result-list">
+        <li class="list-item" *ngFor="let result of data">
+          <a class="item-title">{{result.title}}</a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+</div>

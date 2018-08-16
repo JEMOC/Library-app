@@ -1,0 +1,18 @@
+<div class="content">
+  <div class="container">
+    <ul class="top5-list clearfix">
+      <li *ngFor="let data of booksdata.value;" class="book-list">
+        <img  class="thum" src="http://111.230.63.173:3001/{{data.title}}.jpg" alt="{{data.title}}">
+        <div class="item-info">
+            <p>{{data.title}}</p>
+            <p>{{data.public.author}}</p>
+            <p>{{data.public.conpany}}</p>
+            <p>{{data.public.date}}</p>
+            <p>{{data.public.price}}</p>
+            <p>{{data.score}}</p>
+            <p class="nosp">{{data.synopsis}}</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

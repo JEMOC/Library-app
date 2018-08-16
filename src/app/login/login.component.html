@@ -1,0 +1,29 @@
+<div class="user_box">
+  <ul class="user_content">
+    <li class="user_item">
+      <a (click)="showshade()" class="item_text">登陆</a>
+    </li>
+  </ul>
+</div>
+<div *ngIf="shadectl" class="shade">
+
+
+  <div class="login_wrapper">
+    <div class="login_box">
+      <p class="user_content">
+        <input class="user" [(ngModel)]="query.username" autocomplete="off" type="text" placeholder="用户名">
+      </p>
+      <p class="password_content">
+        <input class="password" [(ngModel)]="query.password" autocomplete="off" type="password" placeholder="密码">
+      </p>
+      <p class="botton_content">
+        <a class="login" (click)="login()">登陆</a>
+      </p>
+      <a (click)="closeshade()" routerLink="/register">注册</a>
+      
+    </div>
+    <span (click)="closeshade()" class="close_btn">X</span>
+    
+  </div>
+
+</div>

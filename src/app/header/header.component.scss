@@ -1,0 +1,29 @@
+.header{
+    width: 100%;
+    height: 35px;
+    background-color: #333;
+
+
+
+    .header_list{
+        width: 114px;
+        .list_content{
+            .list_item{
+                margin-right: 5px;
+                .item_text{
+                    transition: all .1s linear;
+                    &:hover{
+                        background-color: #fff;
+                        color: #333;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+a:active{
+    background-color: none;
+}

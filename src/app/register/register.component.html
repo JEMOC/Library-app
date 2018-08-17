@@ -1,14 +1,17 @@
 <div class="main-wrapper">
   <div class="main">
-    <div class="form">
+    <div class="form" [formGroup]="registForm">
       <div class="input-nickname">
-        <input type="text" [(ngModel)]="query.username" class="nickname" autocomplete="off" placeholder="昵称">
+        <input type="text" class="nickname" autocomplete="off" placeholder="昵称" formControlName="username">
       </div>
-      <div class="input-password">
-        <input type="password" [(ngModel)]="query.password" autocomplete="off" placeholder="密码">
+      <div class="input-password" formGroupName="passwordGroup">
+        <input type="password"  autocomplete="off" placeholder="密码" formControlName="password">
+        <div [hidden]="!registForm.hasError('minlength', ['passwordGroup', 'password'])">密码最小长度是6</div>
+        <input type="password"  autocomplete="off" placeholder="确认密码" formControlName="confirpwd">
+        <div [hidden]="(!registForm.hasError('equal', 'passwordGroup')&&(this.registForm.get('passwordGroup').get('confirpwd').value==='')&&(this.registForm.get('passwordGroup').get('password').value===''))||this.registForm.get('passwordGroup').get('confirpwd').untouched">密码不一致</div>
       </div>
       <div class="input-email">
-        <input type="email" [(ngModel)]="query.email" autocomplete="off" placeholder="电子邮箱">
+        <input type="email"  autocomplete="off" placeholder="电子邮箱" formControlName="email">
       </div>
       <div class="input-sumbit">
         <a (click)="register()">登录</a>

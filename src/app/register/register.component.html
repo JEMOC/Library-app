@@ -3,18 +3,42 @@
     <div class="form" [formGroup]="registForm">
       <div class="input-nickname">
         <input type="text" class="nickname" autocomplete="off" placeholder="昵称" formControlName="username">
+        <div [hidden]="username.valid || username.untouched">
+          <p [hidden]="!registForm.hasError('required', 'username')">昵称不为空</p>
+          <p [hidden]="!registForm.hasError('minlength', 'username')">昵称字符不能少于6位</p>
+        </div>
       </div>
       <div class="input-password" formGroupName="passwordGroup">
-        <input type="password"  autocomplete="off" placeholder="密码" formControlName="password">
-        <div [hidden]="!registForm.hasError('minlength', ['passwordGroup', 'password'])">密码最小长度是6</div>
-        <input type="password"  autocomplete="off" placeholder="确认密码" formControlName="confirpwd">
-        <div [hidden]="(!registForm.hasError('equal', 'passwordGroup')&&(this.registForm.get('passwordGroup').get('confirpwd').value==='')&&(this.registForm.get('passwordGroup').get('password').value===''))||this.registForm.get('passwordGroup').get('confirpwd').untouched">密码不一致</div>
+        <div class="password-box">
+          <input type="password" autocomplete="off" placeholder="密码" formControlName="password">
+          <div [hidden]="password.valid || password.untouched">
+            <p [hidden]="!passwordGroup.hasError('required', 'password')">密码不为空</p>
+            <p [hidden]="!passwordGroup.hasError('minlength', 'password')">密码长度不少于6位</p>
+          </div>
+        </div>
+        <div class="confirm-box">
+          <input type="password" autocomplete="off" placeholder="确认密码" formControlName="confirpwd">
+          <div [hidden]="confirpwd.untouched">
+            <p [hidden]="password.valid">请先填写密码</p>
+            <div [hidden]="!password.valid">
+                <p [hidden]="!passwordGroup.hasError('required', 'confirpwd')">不为空</p>
+                <p [hidden]="!registForm.hasError('equal', 'passwordGroup')" (click)="log(registForm.getError('equal', 'passwordGroup'))">{{registForm.getError('equal', 'passwordGroup')?.info}}</p>
+            </div>   
+          </div>
+        </div>
+
       </div>
       <div class="input-email">
-        <input type="email"  autocomplete="off" placeholder="电子邮箱" formControlName="email">
+        <div class="email-box">
+          <input type="email" autocomplete="off" placeholder="电子邮箱" formControlName="email">
+          <div [hidden]="email.valid || email.untouched">
+            <p [hidden]="!registForm.hasError('required', 'email')">不为空</p>
+            <p [hidden]="!registForm.hasError('email', 'email')">邮箱格式不正确</p>
+          </div>
+        </div>
       </div>
       <div class="input-sumbit">
-        <a (click)="register()">登录</a>
+        <a (click)="register()">注册</a>
       </div>
     </div>
   </div>

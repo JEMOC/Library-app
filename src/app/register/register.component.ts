@@ -1,7 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { user_url } from '../url';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
+import {
+  HttpClient,
+  HttpHeaders
+} from '@angular/common/http';
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  FormControl
+} from '@angular/forms';
+import {
+  user_url
+} from '../url';
 
 @Component({
   selector: 'app-register',
@@ -12,26 +25,30 @@ export class RegisterComponent implements OnInit {
 
   registForm: FormGroup;
 
-  password: FormControl;
+
+
+  passwordGroup: FormGroup;
+
+  username;
+  password;
+  confirpwd;
+  email;
+
+
+
 
   equalVaildator(group: FormGroup): any {
     const password = group.get('password') as FormControl;
     const confirpwd = group.get('confirpwd') as FormControl;
 
     const isEqule: boolean = (password.value === confirpwd.value);
-    return isEqule ? null : {equal: {info: '密码不一致'}};
+    return isEqule ? null : {
+      equal: {
+        info: '密码不一致'
+      }
+    };
   }
 
-  emailVaildator(control: FormControl): any {
-
-    const emailExp = /^([a-zA-z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
-    const result = emailExp.test(control.value);
-
-    return result ? null : {
-      info: '请输入正确的邮箱'
-    }
-
-  }
 
 
 
@@ -55,26 +72,42 @@ export class RegisterComponent implements OnInit {
       responseType: 'text'
     };
 
-    
+    this.passwordGroup = this.fb.group({
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirpwd: ['', Validators.required]
+    }, {
+      validator: this.equalVaildator
+    })
 
     this.registForm = this.fb.group({
-      username: ['', [Validators.required, Validators.minLength(6)]],
-      passwordGroup: this.fb.group({
-        password: ['', Validators.minLength(6)],
-        confirpwd: ['']
-      }, {validator: this.equalVaildator}),
-      email: ['', {validator: this.emailVaildator}]
-    });
-    
-   }
+        username: ['', [Validators.required, Validators.minLength(6)]],
+        passwordGroup: this.passwordGroup,
+        email: ['', [Validators.required, Validators.email]]
+        });
 
-  ngOnInit() {
+      this.username = this.registForm.get('username'); this.password = this.passwordGroup.get('password'); this.confirpwd = this.passwordGroup.get('confirpwd'); this.email = this.registForm.get('email')
+
+    }
+
+    ngOnInit() {}
+
+    register(): void {
+      if (this.registForm.valid) {
+        const query = {
+          username: this.username.value,
+          password: this.password.value,
+          email: this.email.value
+        }
+        this.http.post(user_url + 'user/register', query, this.options)
+          .subscribe(data => console.log(data));
+        this.log(query);
+      } else {
+        alert('disable');
+      }
+    }
+
+    log(obj) {
+      console.log(obj);
+    }
+
   }
-
-  register(): void {
-    this.http.post(user_url + 'user/register', this.query, this.options)
-    .subscribe(data => console.log(data));
-    console.log(this.query);
-  }
-
-}

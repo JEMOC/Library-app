@@ -4,16 +4,16 @@
       <div class="input-nickname">
         <input type="text" [class.invalid]="username.invalid && !username.untouched" [class.valid]="username.valid" class="nickname" autocomplete="off" placeholder="昵称" formControlName="username">
         <div [hidden]="username.valid || username.untouched">
-          <p class="tips_item" [hidden]="!registForm.hasError('required', 'username')">昵称不为空</p>
-          <p class="tips_item" [hidden]="!registForm.hasError('minlength', 'username')">昵称字符不能少于6位</p>
+          <p class="tips_item" [hidden]="!registForm.hasError('required', ['username'])">昵称不为空</p>
+          <p class="tips_item" [hidden]="!registForm.hasError('minlength', ['username'])">昵称字符不能少于6位</p>
         </div>
       </div>
       <div class="input-password" formGroupName="passwordGroup">
         <div class="password-box">
           <input class="password" [class.invalid]="password.invalid && !password.untouched" [class.valid]="password.valid" type="password" autocomplete="off" placeholder="密码" formControlName="password">
           <div [hidden]="password.valid || password.untouched">
-            <p class="tips_item" [hidden]="!passwordGroup.hasError('required', 'password')">密码不为空</p>
-            <p class="tips_item" [hidden]="!passwordGroup.hasError('minlength', 'password')">密码长度不少于6位</p>
+            <p class="tips_item" [hidden]="!passwordGroup.hasError('required', ['password'])">密码不为空</p>
+            <p class="tips_item" [hidden]="!passwordGroup.hasError('minlength', ['password'])">密码长度不少于6位</p>
           </div>
         </div>
         <div class="confirm-box">
@@ -21,8 +21,8 @@
           <div [hidden]="confirpwd.untouched">
             <p class="tips_item" [hidden]="password.valid">请先填写密码</p>
             <div [hidden]="!password.valid">
-                <p class="tips_item" [hidden]="!passwordGroup.hasError('required', 'confirpwd')">不为空</p>
-                <p class="tips_item" [hidden]="!registForm.hasError('equal', 'passwordGroup')" (click)="log(registForm.getError('equal', 'passwordGroup'))">{{registForm.getError('equal', 'passwordGroup')?.info}}</p>
+                <p class="tips_item" [hidden]="!passwordGroup.hasError('required', ['confirpwd'])">不为空</p>
+                <p class="tips_item" [hidden]="!registForm.hasError('equal', ['passwordGroup'])" (click)="log(registForm.getError('equal', ['passwordGroup']))">{{registForm.getError('equal', ['passwordGroup'])?.info}}</p>
             </div>   
           </div>
         </div>
@@ -32,8 +32,8 @@
         <div class="email-box">
           <input class="email" type="email" [class.invalid]="email.invalid && !email.untouched" [class.valid]="email.valid" autocomplete="off" placeholder="电子邮箱" formControlName="email">
           <div [hidden]="email.valid || email.untouched">
-            <p class="tips_item" [hidden]="!registForm.hasError('required', 'email')">不为空</p>
-            <p class="tips_item" [hidden]="!registForm.hasError('email', 'email')">邮箱格式不正确</p>
+            <p class="tips_item" [hidden]="!registForm.hasError('required', ['email'])">不为空</p>
+            <p class="tips_item" [hidden]="!registForm.hasError('email', ['email'])">邮箱格式不正确</p>
           </div>
         </div>
       </div>

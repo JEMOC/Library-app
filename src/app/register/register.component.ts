@@ -91,19 +91,17 @@ export class RegisterComponent implements OnInit {
 
     ngOnInit() {}
 
-    register(): void {
-      if (this.registForm.valid) {
-        const query = {
-          username: this.username.value,
-          password: this.password.value,
-          email: this.email.value
-        }
-        this.http.post(user_url + 'user/register', query, this.options)
-          .subscribe(data => console.log(data));
-        this.log(query);
-      } else {
-        alert('disable');
+
+
+    onSubmit() {
+      const query = {
+        username: this.username.value,
+        password: this.password.value,
+        email: this.email.value
       }
+      this.http.post(user_url + 'user/register', query, this.options)
+        .subscribe(data => console.log(data));
+      this.log(query);
     }
 
     log(obj) {

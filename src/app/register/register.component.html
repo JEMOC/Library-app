@@ -1,28 +1,28 @@
 <div class="main-wrapper">
   <div class="main">
-    <div class="form" [formGroup]="registForm">
+    <form class="form" [formGroup]="registForm" (ngSubmit)="onSubmit()">
       <div class="input-nickname">
-        <input type="text" class="nickname" autocomplete="off" placeholder="昵称" formControlName="username">
+        <input type="text" [class.invalid]="username.invalid && !username.untouched" [class.valid]="username.valid" class="nickname" autocomplete="off" placeholder="昵称" formControlName="username">
         <div [hidden]="username.valid || username.untouched">
-          <p [hidden]="!registForm.hasError('required', 'username')">昵称不为空</p>
-          <p [hidden]="!registForm.hasError('minlength', 'username')">昵称字符不能少于6位</p>
+          <p class="tips_item" [hidden]="!registForm.hasError('required', 'username')">昵称不为空</p>
+          <p class="tips_item" [hidden]="!registForm.hasError('minlength', 'username')">昵称字符不能少于6位</p>
         </div>
       </div>
       <div class="input-password" formGroupName="passwordGroup">
         <div class="password-box">
-          <input type="password" autocomplete="off" placeholder="密码" formControlName="password">
+          <input class="password" [class.invalid]="password.invalid && !password.untouched" [class.valid]="password.valid" type="password" autocomplete="off" placeholder="密码" formControlName="password">
           <div [hidden]="password.valid || password.untouched">
-            <p [hidden]="!passwordGroup.hasError('required', 'password')">密码不为空</p>
-            <p [hidden]="!passwordGroup.hasError('minlength', 'password')">密码长度不少于6位</p>
+            <p class="tips_item" [hidden]="!passwordGroup.hasError('required', 'password')">密码不为空</p>
+            <p class="tips_item" [hidden]="!passwordGroup.hasError('minlength', 'password')">密码长度不少于6位</p>
           </div>
         </div>
         <div class="confirm-box">
-          <input type="password" autocomplete="off" placeholder="确认密码" formControlName="confirpwd">
+          <input class="confirpwd" [class.invalid]="confirpwd.invalid && !confirpwd.untouched" [class.valid]="confirpwd.valid" type="password" autocomplete="off" placeholder="确认密码" formControlName="confirpwd">
           <div [hidden]="confirpwd.untouched">
-            <p [hidden]="password.valid">请先填写密码</p>
+            <p class="tips_item" [hidden]="password.valid">请先填写密码</p>
             <div [hidden]="!password.valid">
-                <p [hidden]="!passwordGroup.hasError('required', 'confirpwd')">不为空</p>
-                <p [hidden]="!registForm.hasError('equal', 'passwordGroup')" (click)="log(registForm.getError('equal', 'passwordGroup'))">{{registForm.getError('equal', 'passwordGroup')?.info}}</p>
+                <p class="tips_item" [hidden]="!passwordGroup.hasError('required', 'confirpwd')">不为空</p>
+                <p class="tips_item" [hidden]="!registForm.hasError('equal', 'passwordGroup')" (click)="log(registForm.getError('equal', 'passwordGroup'))">{{registForm.getError('equal', 'passwordGroup')?.info}}</p>
             </div>   
           </div>
         </div>
@@ -30,16 +30,16 @@
       </div>
       <div class="input-email">
         <div class="email-box">
-          <input type="email" autocomplete="off" placeholder="电子邮箱" formControlName="email">
+          <input class="email" type="email" [class.invalid]="email.invalid && !email.untouched" [class.valid]="email.valid" autocomplete="off" placeholder="电子邮箱" formControlName="email">
           <div [hidden]="email.valid || email.untouched">
-            <p [hidden]="!registForm.hasError('required', 'email')">不为空</p>
-            <p [hidden]="!registForm.hasError('email', 'email')">邮箱格式不正确</p>
+            <p class="tips_item" [hidden]="!registForm.hasError('required', 'email')">不为空</p>
+            <p class="tips_item" [hidden]="!registForm.hasError('email', 'email')">邮箱格式不正确</p>
           </div>
         </div>
       </div>
       <div class="input-sumbit">
-        <a (click)="register()">注册</a>
+        <input class="submit" type="submit" value="注册" [disabled]="!registForm.valid">
       </div>
-    </div>
+    </form>
   </div>
 </div>

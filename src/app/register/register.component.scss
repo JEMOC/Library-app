@@ -1,17 +1,64 @@
+input {
+  display: block;
+  width: 320px;
+  height: 32px;
+  margin: 0 auto;
+  text-indent: 1em;
+  border: 0;
+  outline: 0;
+}
 
-.main{
-    
+@media only screen and (min-device-width: 0) {
+  .main {
+    .form {
+      margin: 0 auto;
+      .nickname,
+      .password,
+      .confirpwd,
+      .email {
+        border: 1px solid #eee;
+        text-index: 1em;
+      }
+      .submit {
+        border-radius: 3px;
+        background-color: #3f89ec;
+        text-indent: 0;
+        color: #fff;
+        cursor: pointer;
 
-    .form{
-        width: 380px;
-        margin: 0 auto;
-
-        input{
-            display: block;
-            width: 320px;
-            height: 32px;
-            margin: 0 auto;
-            text-indent: 1em;
+        &:disabled{
+          background-color: gray;
         }
+      }
+
+      .tips_item{
+        width: 320px;
+        margin: 0.3em auto;
+        font-size: 12px;
+        color: red;
+      }
+
+      .invalid{
+        border-color: red ;
+      }
+
+      .valid{
+        border-color: #00FF7F;
+      }
     }
+  }
+}
+
+@media only screen and (max-device-width: 380px) {
+  .form {
+    width: auto;
+  }
+}
+
+@media only screen and (min-device-width: 380px) {
+  .form {
+    width: 380px;
+  }
+
+
 }

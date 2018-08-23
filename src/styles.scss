@@ -1,8 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 *{
-  user-select: none;
   padding: 0;
   margin: 0;
+  -webkit-tap-highlight-color: transparent;
+  outline: 0;
+}
+*:not(input, textarea) {
+  -webkit-touch-callout: none;
+  user-select: none;
 }
 
 html {

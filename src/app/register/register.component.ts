@@ -23,6 +23,17 @@ import {
 })
 export class RegisterComponent implements OnInit {
 
+
+  query: any = {
+    username: '',
+    password: '',
+    email: ''
+
+  };
+  options;
+
+  URL: String = 'http://localhost:81/user/register';
+
   registForm: FormGroup;
 
 
@@ -52,17 +63,6 @@ export class RegisterComponent implements OnInit {
 
 
 
-  query: any = {
-    username: '',
-    password: '',
-    email: ''
-
-  }
-  options;
-
-  URL: string = 'http://localhost:81/user/register';
-
-
   constructor(private http: HttpClient, private fb: FormBuilder) {
     const headers = new Headers({
       'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
@@ -77,35 +77,38 @@ export class RegisterComponent implements OnInit {
       confirpwd: ['', Validators.required]
     }, {
       validator: this.equalVaildator
-    })
+    });
 
     this.registForm = this.fb.group({
-        username: ['', [Validators.required, Validators.minLength(6)]],
-        passwordGroup: this.passwordGroup,
-        email: ['', [Validators.required, Validators.email]]
-        });
+      username: ['', [Validators.required, Validators.minLength(6)]],
+      passwordGroup: this.passwordGroup,
+      email: ['', [Validators.required, Validators.email]]
+    });
 
-      this.username = this.registForm.get('username'); this.password = this.passwordGroup.get('password'); this.confirpwd = this.passwordGroup.get('confirpwd'); this.email = this.registForm.get('email')
-
-    }
-
-    ngOnInit() {}
-
-
-
-    onSubmit() {
-      const query = {
-        username: this.username.value,
-        password: this.password.value,
-        email: this.email.value
-      }
-      this.http.post(user_url + 'user/register', query, this.options)
-        .subscribe(data => console.log(data));
-      this.log(query);
-    }
-
-    log(obj) {
-      console.log(obj);
-    }
+    this.username = this.registForm.get('username');
+    this.password = this.passwordGroup.get('password');
+    this.confirpwd = this.passwordGroup.get('confirpwd');
+    this.email = this.registForm.get('email');
 
   }
+
+  ngOnInit() {}
+
+
+
+  onSubmit() {
+    const query = {
+      username: this.username.value,
+      password: this.password.value,
+      email: this.email.value
+    };
+    this.http.post(user_url + 'user/register', query, this.options)
+      .subscribe(data => console.log(data));
+    this.log(query);
+  }
+
+  log(obj) {
+    console.log(obj);
+  }
+
+}
